@@ -1,0 +1,35 @@
+<section class="todos">
+  <% tasks.forEach(function(task) { %>
+    <% if (task.userId == user.id) { %>
+      <div class="todo">
+        <div class="todo__edit" id="edit-<%= task.id %>">
+          <form action="api/update" method="post" id="edit-form" class="edit-form">
+            <input type="hidden" name="id" value=<%= task.id %>>
+            <input type="text" class="input--edit" name="task" value=<%= task.task %>>
+            <input type="submit" value="salvar" class="save">
+          </form>
+        </div>
+        <div class="todo__normal show" id="normal-<%= task.id %>">
+          <p class="todo__task">
+            <%= task.task %>
+          </p>
+          <div class="todo__options">
+            <button aria-label="Edit task" class="todo--btn edit-task" onclick="openEdit('<%= task.id %>')" >
+              <i class="fas fa-pen"></i>
+            </button>
+            <form action="api/delete" method="post">
+              <input type="hidden" name="id" value=<%= task.id %>>
+              <button aria-label="Delete task" class="todo--btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% }); %>
+
+  <div class="popup" id="popup">
+    <span class="popuptext">Popup text...</span>
+  </div>
+</section>

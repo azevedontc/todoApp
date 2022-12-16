@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <title>Members</title>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form form-container sign-up-container">
+        <form action="/register" method="POST">
+          <h1>Create Account</h1>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="off"
+          />
+
+          <% if (openTab === 'register') { %>
+          <div><%- include ("./partials/register-messages"); %></div>
+          <% } %>
+
+          <button class="btn btn--large">Sign Up</button>
+          <p class="auth">have an account? <a href="/login">Sign in</a></p>
+        </form>
+      </div>
+      <div class="form form-container sign-in-container">
+        <form action="/login" method="POST">
+          <h1>Sign in</h1>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="off"
+          />
+
+          <% if (openTab === 'login') { %>
+          <div><%- include ("./partials/messages"); %></div>
+          <% } %>
+
+          <button class="btn btn--large">Sign In</button>
+
+          <p class="auth">
+            Don't have an account? <a href="/register">Sign Up</a>
+          </p>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p class="text">
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="btn btn--secondary ghost" id="signIn">
+              Sign In
+            </button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p class="text">
+              Enter your personal details and start journey with us
+            </p>
+            <button class="btn btn--secondary ghost" id="signUp">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const open = "<%= openTab %>";
+    </script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

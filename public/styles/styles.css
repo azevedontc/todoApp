@@ -1,0 +1,542 @@
+:root {
+  --bg-color: #222329;
+  --bg-lighter: #31323a;
+  --primary: #d8d8d8;
+  --secondary: #e7b728;
+  --secondary-lighter: #ffca2a;
+  --error-color: #f04e4e;
+}
+
+/* ========== General styles ========== */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+  color: var(--primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bg-lighter);
+  border-radius: 20px;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 70px; /* Set same as footer's height */
+}
+
+li {list-style: none;}
+
+/* p {margin: 1rem 0;} */
+
+p a {color: var(--secondary);}
+
+hr {
+  border: 1px solid var(--bg-lighter);
+  margin: 2em 0;
+  max-width: 100%;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+input {
+  background-color: var(--bg-lighter);
+  border: none;
+  padding: 14px;
+  margin: 5px 0;
+  width: 100%;
+  border-radius: 50px;
+}
+
+code {
+  padding: 4px 4px 4px 8px;
+  font-size: 0.9rem;
+  position: relative;
+  background-color: var(--bg-lighter);
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: var(--secondary);
+  border: 1.3px solid var(--secondary);
+  color: var(--bg-color);
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  border-radius: 50px;
+  padding: 10px 18px;
+  margin: 5px 0;
+}
+
+.btn:active {transform: scale(0.9);}
+
+.btn--large {width: 100%;}
+
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.success,
+.alert {text-align: center;}
+
+.alert {color: var(--error-color);}
+
+/* ========== Login and register page ========== */
+
+.text {margin: 20px 0 30px;}
+
+.auth {display: none;}
+
+button.ghost {
+  background-color: transparent;
+  border-color: var(--primary);
+}
+
+.form {
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.container {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 10%;
+  width: 40%;
+  z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {transform: translateX(100%);}
+
+.sign-up-container {
+  left: 10%;
+  width: 40%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 65%;
+  width: 35%;
+  height: 100%;
+  overflow: hidden;
+  transition: left 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {left: 0;}
+
+.overlay {
+  background: var(--secondary);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: var(--primary);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {transform: translateX(50%);}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {transform: translateX(-20%);}
+
+.container.right-panel-active .overlay-left {transform: translateX(0);}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {transform: translateX(20%);}
+
+/* ========== Header and Navigation ========== */
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.6rem;
+}
+
+nav {display: flex;}
+
+.navbar__item {
+  margin: 0 1rem 0 1rem;
+  padding: 0.5rem;
+}
+
+.btn--auth {padding: 8px 12px;}
+
+.navigation,
+#bars {
+  display: none;
+}
+
+.authentication {display: none;}
+
+/* ========== edit todo  ========== */
+input[type="submit"], button {
+  cursor: pointer;
+}
+
+.save {
+  width: 50px;
+  text-align: center;
+  padding: 0;
+  font-weight: bold;
+}
+
+.edit-form, .todo__normal.show {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo__normal p {
+  width: 80%;
+}
+
+.todo__edit, .todo__normal {
+  width: 100%;
+}
+
+.todo__edit input[type="text"] {
+  padding: 0;
+}
+
+.todo__edit, .todo__normal {
+  display: none;
+}
+
+.todo__edit.show {
+  display: block;
+}
+
+.todo__normal.show {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/* ========== new task form ========== */
+.form__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-task {
+  width: 100%;
+  margin: 3rem 0;
+}
+
+.new-task button {
+  background: none;
+  border: none;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .new-task {
+    width: 500px;
+    margin: 3rem auto;
+  }
+}
+  
+/* ========== tasks page ========== */
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #31323a;
+  margin: 10px auto;
+  padding: .8em 1em;
+  border-radius: 8px;
+} 
+
+@media (min-width: 768px) {
+  .todo {
+    width: 500px;
+    margin: 10 auto;
+  }
+}
+
+.todo__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
+}
+
+.todo--btn {
+  background: none;
+  border: none;
+  padding: 6px;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* ========== Responsive ========== */
+@media screen and (max-width: 768px) {
+  .form {padding: 0 10px;}
+
+  /* ========== Header and navigation ========== */
+  .header {justify-content: space-between;}
+
+  #bars {
+    font-size: 2rem;
+    display: block;
+  }
+
+  .navigation {
+    position: fixed;
+    top: 0;
+    background-color: var(--bg-lighter);
+    z-index: 4;
+    height: 100vh;
+    width: 60%;
+  }
+
+  .navigation li {
+    padding: 10px;
+    font-size: 1.4rem;
+  }
+
+  .navigation a,
+  h2 {
+    color: var(--primary);
+    width: 100%;
+    display: block;
+  }
+
+  .authentication {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: var(--bg-lighter);
+    bottom: 0;
+    width: 100%;
+    padding: 4px;
+    z-index: 3;
+  }
+
+  .authentication .btn {
+    text-align: center;
+    padding: 6px;
+    width: 49%;
+    border-radius: 50px;
+  }
+
+  .active {display: block;}
+
+  .header div,
+  nav {
+    display: none;
+  }
+
+  /* ========== Home page ========== */
+  .hero {margin: 0.4rem;}
+
+  .hero__content {margin: 10px;}
+
+  .fact {text-align: center;}
+
+  .fact h2 {max-width: 90%;}
+
+  /* ========== Documentation Page ========== */
+  .docs {
+    margin: 1rem auto;
+    padding: 5px;
+    width: 95%;
+  }
+
+  .example {
+    display: flex;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  /* ========== Profile page ========== */
+  .profile {
+    width: 60%;
+    margin: 12vh auto;
+  }
+
+  .profile section {
+    width: 90%;
+    margin: auto;
+  }
+
+  .profile h2 {text-align: center;}
+
+  .sidebar {display: none;}
+}
+
+@media screen and (max-width: 500px) {
+  /* ========== Login and Register page ========== */
+  .overlay-container {display: none;}
+
+  .form-container {
+    width: 100%;
+    left: 0;
+  }
+
+  .container.right-panel-active .sign-up-container {transform: translateX(0%);}
+
+  .auth {
+    margin: 10% 0;
+    display: block;
+  }
+
+  .navigation {width: 80%;}
+
+  /* ========== Home page ========== */
+  .hero img {display: none;}
+
+  .why {height: auto;}
+
+  .why__details {
+    display: block;
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  /* ========== Profile page ========== */
+  .profile {width: 90%;}
+}
