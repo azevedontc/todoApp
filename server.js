@@ -14,7 +14,7 @@ const app = express();
 // Passport Config
 require("./config/passport")(passport);
 
-// import routes
+// Import routes
 const apiRoute = require("./routes/api");
 const loginRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
@@ -36,7 +36,7 @@ app.use(
   })
 );
 
-// connect to db
+// Connect to db
 mongoose
   .connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
